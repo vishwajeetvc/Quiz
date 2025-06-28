@@ -1,80 +1,63 @@
 import {questions} from './question.js'
+import {digital} from './controllers.js'
+import {loadQuestion} from './controllers.js'
+import {clearCheckBox} from './controllers.js'
+import {tick} from './controllers.js'
+import {submit} from './controllers.js'
 
 const optionsCheckbox = document.querySelectorAll('input[type="radio"]');
-const optionsSpan = document.querySelectorAll('.option');
-const questionBox = document.querySelector('.questionBox');
-
 const nextBtn = document.querySelector('.nextBtn');
 const prevBtn = document.querySelector('.prevBtn');
-
+const attempts = document.querySelector('.attempts');
+const timer = document.querySelector('.timer');
 
 let sqn = 0;
 const omr = {};
 
-loadQuestion(0);
+let totalTime = 30; //sec
 
+let key = setInterval(()=>{
+  timer.innerText = digital(totalTime--) 
+  if(totalTime < 0){
+    clearInterval(key)
+    submit(omr);
+  }
+},1000)
+
+
+loadQuestion(0);
+attempts.innerText = `${Object.keys(omr).length} / ${questions.length}`;
+timer.innerText = digital(totalTime);
+
+//if next of prev button clicked,
+// 1. clear all CheckBox
+// 2. load new question to html
+// 3. if question is attempted tick the option.
 [nextBtn, prevBtn].forEach(button => {
   button.addEventListener('click', (event)=>{
     clearCheckBox();
     if(event.target.className === 'nextBtn'){
       loadQuestion( sqn >=0 && sqn < questions.length-1 ? ++sqn : sqn );
-      if(Object.keys(omr).includes(questions[sqn].id)){
-        tick(omr[questions[sqn].id])
-      }
     } else {
-      loadQuestion( sqn >= 0 && sqn < questions.length ? --sqn : sqn+1 );
-
-      if(Object.keys(omr).includes(questions[sqn].id)){
-        tick(omr[questions[sqn].id])
-      }
-
+      loadQuestion( sqn > 0 && sqn < questions.length ? --sqn : sqn );
     }
+    // if question is attempted, tick the option.
+    if(Object.keys(omr).includes(questions[sqn].id)){
+      tick(omr[questions[sqn].id])
+    }
+
   })
 })
 
+// listen all checkbox and put the answer to omr like {'q1' : 'b', 'q2' : 'a'}
 optionsCheckbox.forEach( (opt) => {
   opt.addEventListener('click', (event)=>{
     omr[questions[sqn].id] = event.target.value
+    attempts.innerText = `${Object.keys(omr).length} / ${questions.length}`;
     console.log(omr)
   })
 })
 
-function tick(opt){
-  switch (opt) {
-    case 'a' : {
-      optionsCheckbox[0].checked = true;
-      break;
-    }
-    case 'b' : {
-      optionsCheckbox[1].checked = true;
-      break;
-    }
-    case 'c' : {
-      optionsCheckbox[2].checked = true;
-      break;
-    }
-    case 'd' : {
-      optionsCheckbox[3].checked = true;
-      break;
-    }
-  }
-}
-
-function loadQuestion(no){
-  questionBox.innerText = questions[no].question;
-  for(let i = 0; i < 4; i++){
-    optionsSpan[i].innerText = questions[no].options[i];
-  }
-}
-function clearCheckBox(){
-  optionsCheckbox.forEach( (opt) => {
-    opt.checked = false;
-  })
-}
 
 
 
-
-let obj = {q1: 'a', q2: 'c', q3: 'd', q4: 'b', q5: 'c' };
-
-console.log(Object.keys(obj).includes('q1'))

@@ -1,0 +1,174 @@
+
+/* style.css */
+
+/* Import a clean Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+h1{
+  padding: 0px 0px 10px;
+  color:tomato;
+
+}
+
+/* Container for the entire quiz */
+.cont {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  width: 90%;
+  max-width: 500px;
+  transition: all 0.3s ease;
+}
+
+/* Question styling */
+.questionBox {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Options container */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+/* Each option block */
+.options div {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  transition: border-color 0.2s, background 0.2s;
+  cursor: pointer;
+}
+
+.options div:hover {
+  border-color: #4f46e5;
+  background-color: #f5f7ff;
+}
+
+/* Hide default radio */
+input[type="radio"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-right: 12px;
+  border: 2px solid #bbb;
+  border-radius: 50%;
+  position: relative;
+}
+
+input[type="radio"]:checked {
+  border-color: #4f46e5;
+  background-color: #4f46e5;
+}
+
+input[type="radio"]:checked::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+}
+
+/* Option text */
+.option {
+  font-size: 1rem;
+  color: #333;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+/* Buttons */
+.prevBtn,
+.attempts,
+.timer,
+.nextBtn {
+  background: #4f46e5;
+  color: white;
+  border: none;
+  padding: 13px 25px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background 0.2s;
+}
+
+.attempts{
+  background-color:red;
+}
+.timer{
+  background-color:black;
+}
+.submit{
+  margin:20px 0px 0px;
+  font-weight: bold;
+  color:green;
+}
+.submit:hover {
+  cursor: pointer;
+}
+
+.prevBtn:hover,
+.nextBtn:hover {
+  background: #3730a3;
+}
+
+.scoreBox {
+  color: #00796b;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 15px 20px;
+  border-radius: 12px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .cont {
+    padding: 20px;
+  }
+
+  .questionBox {
+    font-size: 1.2rem;
+  }
+
+  .option {
+    font-size: 0.95rem;
+  }
+
+  .prevBtn,
+  .nextBtn {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
