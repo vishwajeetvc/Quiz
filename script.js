@@ -10,6 +10,7 @@ const nextBtn = document.querySelector('.nextBtn');
 const prevBtn = document.querySelector('.prevBtn');
 const attempts = document.querySelector('.attempts');
 const timer = document.querySelector('.timer');
+const submitBtn = document.querySelector('.submit');
 
 let sqn = 0;
 const omr = {};
@@ -57,6 +58,8 @@ optionsCheckbox.forEach( (opt) => {
     console.log(omr)
   })
 })
+
+submitBtn.onclick = ()=>submit(omr);
 
 
 
