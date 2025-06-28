@@ -22,7 +22,7 @@ A sleek, responsive quiz application built entirely with **vanilla JavaScript**,
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/quizzer.git
+   git clone  https://github.com/vishwajeetvc/Quiz.git
    ```
 
 2. Open the `index.html` file in your browser to start the quiz.
@@ -50,10 +50,4 @@ A sleek, responsive quiz application built entirely with **vanilla JavaScript**,
 ## 🙌 Acknowledgments
 
 Built with 💻, 🔥, and pure JavaScript — no Google, no Stack Overflow.
-
----
-
-## 📃 License
-
-This project is licensed under the [MIT License](LICENSE).
 
